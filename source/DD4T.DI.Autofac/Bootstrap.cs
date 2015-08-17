@@ -33,7 +33,7 @@ namespace DD4T.Di.Autofac
             var linkProvider = providerTypes.Where(a => typeof(ILinkProvider).IsAssignableFrom(a)).FirstOrDefault();
             var binaryProvider = providerTypes.Where(a => typeof(IBinaryProvider).IsAssignableFrom(a)).FirstOrDefault();
             var componentProvider = providerTypes.Where(a => typeof(IComponentProvider).IsAssignableFrom(a)).FirstOrDefault();
-            var facadeProvider = providerTypes.Where(a => typeof(IProvidersCommonServices).IsAssignableFrom(a)).FirstOrDefault();
+            var commonServices = providerTypes.Where(a => typeof(IProvidersCommonServices).IsAssignableFrom(a)).FirstOrDefault();
 
             builder.RegisterType<DD4TConfiguration>().As<IDD4TConfiguration>().SingleInstance().PreserveExistingDefaults();
             builder.RegisterType<DefaultPublicationResolver>().As<IPublicationResolver>().SingleInstance().PreserveExistingDefaults();
@@ -42,8 +42,8 @@ namespace DD4T.Di.Autofac
 
             builder.RegisterType<DefaultCacheAgent>().As<ICacheAgent>().PreserveExistingDefaults();
 
-            if (facadeProvider != null)
-                builder.RegisterType(facadeProvider).As<IProvidersCommonServices>().PreserveExistingDefaults();
+            if (commonServices != null)
+                builder.RegisterType(commonServices).As<IProvidersCommonServices>().PreserveExistingDefaults();
             if (pageprovider != null)
                 builder.RegisterType(pageprovider).As<IPageProvider>().PreserveExistingDefaults();
             if (cpProvider != null)
