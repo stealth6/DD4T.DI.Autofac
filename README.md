@@ -23,7 +23,7 @@ Autofac Dependency injection container
 
 UseDD4T will Register all default class provided by the DD4T framework.
 
-If you need to override on off the default classes: (i.e. the DefaultPublicationResovler) Register your class before the method call `UseDD4T`
+If you need to override the default classes: (i.e. the DefaultPublicationResovler) Register your class before the method call `UseDD4T`
 
 >     var builder = new ContainerBuilder();
 >     //set all your custom apllication binding here.
