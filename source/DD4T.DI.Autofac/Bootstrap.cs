@@ -15,7 +15,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace DD4T.Di.Autofac
+namespace DD4T.DI.Autofac
 {
     public static class Bootstrap
     {
