@@ -5,11 +5,14 @@ using DD4T.ContentModel.Contracts.Logging;
 using DD4T.ContentModel.Contracts.Providers;
 using DD4T.ContentModel.Contracts.Resolvers;
 using DD4T.ContentModel.Factories;
+using DD4T.Core.Contracts.ViewModels;
 using DD4T.Factories;
 using DD4T.Utils;
 using DD4T.Utils.Caching;
 using DD4T.Utils.Logging;
 using DD4T.Utils.Resolver;
+using DD4T.ViewModels;
+using DD4T.ViewModels.Reflection;
 using System;
 using System.IO;
 using System.Linq;
@@ -37,7 +40,7 @@ namespace DD4T.DI.Autofac
 
             builder.RegisterType<DD4TConfiguration>().As<IDD4TConfiguration>().SingleInstance().PreserveExistingDefaults();
             builder.RegisterType<DefaultPublicationResolver>().As<IPublicationResolver>().SingleInstance().PreserveExistingDefaults();
-            builder.RegisterType<NullLogger>().As<ILogger>().SingleInstance().PreserveExistingDefaults();
+            builder.RegisterType<DefaultLogger>().As<ILogger>().SingleInstance().PreserveExistingDefaults();
             
 
             builder.RegisterType<DefaultCacheAgent>().As<ICacheAgent>().PreserveExistingDefaults();
@@ -62,6 +65,34 @@ namespace DD4T.DI.Autofac
             builder.RegisterType<ComponentFactory>().As<IComponentFactory>().PreserveExistingDefaults();
             builder.RegisterType<BinaryFactory>().As<IBinaryFactory>().PreserveExistingDefaults();
             builder.RegisterType<LinkFactory>().As<ILinkFactory>().PreserveExistingDefaults();
+
+            //viewmodels
+
+            builder.RegisterType<ReflectionOptimizer>()
+                 .As<IReflectionHelper>()
+                 .SingleInstance()
+                 .PreserveExistingDefaults();
+
+            builder.RegisterType<DefaultViewModelResolver>()
+               .As<IViewModelResolver>()
+               .SingleInstance()
+               .PreserveExistingDefaults(); 
+
+            builder.RegisterType<ViewModelFactory>()
+               .As<IViewModelFactory>()
+               .SingleInstance()
+               .PreserveExistingDefaults();
+
+            builder.RegisterType<WebConfigViewModelKeyProvider>()
+             .As<IViewModelKeyProvider>()
+             .SingleInstance()
+             .PreserveExistingDefaults();
+
+            //caching JMS
+            builder.RegisterType<JMSMessageProvider>()
+                .As<IMessageProvider>()
+                .SingleInstance()
+                .PreserveExistingDefaults();
         }
     }
 }
