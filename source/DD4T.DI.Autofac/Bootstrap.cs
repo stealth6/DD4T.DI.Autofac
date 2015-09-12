@@ -67,7 +67,6 @@ namespace DD4T.DI.Autofac
             builder.RegisterType<LinkFactory>().As<ILinkFactory>().PreserveExistingDefaults();
 
             //viewmodels
-
             builder.RegisterType<ReflectionOptimizer>()
                  .As<IReflectionHelper>()
                  .SingleInstance()
