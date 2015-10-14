@@ -41,9 +41,12 @@ namespace DD4T.DI.Autofac
             builder.RegisterType<DD4TConfiguration>().As<IDD4TConfiguration>().SingleInstance().PreserveExistingDefaults();
             builder.RegisterType<DefaultPublicationResolver>().As<IPublicationResolver>().SingleInstance().PreserveExistingDefaults();
             builder.RegisterType<DefaultLogger>().As<ILogger>().SingleInstance().PreserveExistingDefaults();
-            
 
             builder.RegisterType<DefaultCacheAgent>().As<ICacheAgent>().PreserveExistingDefaults();
+
+            
+            builder.RegisterRestProviderTypes();
+            builder.RegisterMVCTypes();
 
             if (commonServices != null)
                 builder.RegisterType(commonServices).As<IProvidersCommonServices>().PreserveExistingDefaults();
