@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -30,7 +31,7 @@ namespace DD4T.DI.Autofac
             if (iComponentPresentationRenderer == null || defaultComponentPresentationRenderer == null)
                 return;
 
-            builder.RegisterType(defaultComponentPresentationRenderer).As(new[] { iComponentPresentationRenderer });
+            builder.RegisterType(defaultComponentPresentationRenderer).As(new[] { iComponentPresentationRenderer }).PreserveExistingDefaults();
         }
     }
 }

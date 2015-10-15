@@ -23,7 +23,7 @@ namespace DD4T.DI.Autofac
             if (iHttpMessageHandlerFactory == null || defaultHttpMessageHandlerFactory == null)
                 return;
 
-            builder.RegisterType(defaultHttpMessageHandlerFactory).As(new[] { iHttpMessageHandlerFactory });
+            builder.RegisterType(defaultHttpMessageHandlerFactory).As(new[] { iHttpMessageHandlerFactory }).PreserveExistingDefaults();
         }
     }
 }
