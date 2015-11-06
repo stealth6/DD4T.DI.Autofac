@@ -28,10 +28,21 @@ namespace DD4T.DI.Autofac
             var iComponentPresentationRenderer = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.Html.IComponentPresentationRenderer")).FirstOrDefault();
             var defaultComponentPresentationRenderer = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.Html.DefaultComponentPresentationRenderer")).FirstOrDefault();
 
-            if (iComponentPresentationRenderer == null || defaultComponentPresentationRenderer == null)
-                return;
+            var iXpmMarkupService = providerTypes.Where(a => a.FullName.Equals("DD4T.MVC.ViewModels.XPM.IXpmMarkupService")).FirstOrDefault();
+            var defaultXpmMarkupService = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.ViewModels.XPM.XpmMarkupService")).FirstOrDefault();
 
-            builder.RegisterType(defaultComponentPresentationRenderer).As(new[] { iComponentPresentationRenderer }).PreserveExistingDefaults();
+            //register default ComponentPresentationRenderer
+            if (iComponentPresentationRenderer != null || defaultComponentPresentationRenderer != null)
+            {
+                builder.RegisterType(defaultComponentPresentationRenderer).As(new[] { iComponentPresentationRenderer }).PreserveExistingDefaults();
+            }
+            //register default XPmMarkupService
+            if (iXpmMarkupService != null || defaultXpmMarkupService != null)
+            {
+                builder.RegisterType(defaultXpmMarkupService).As(new[] { iXpmMarkupService }).PreserveExistingDefaults();
+            }
+
+
         }
     }
 }
