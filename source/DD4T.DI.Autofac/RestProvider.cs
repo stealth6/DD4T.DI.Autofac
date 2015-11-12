@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DD4T.DI.Autofac
 {
-    public static class RestProviderTypes
+    public static class RestProvider
     {
-        public static void RegisterRestProviderTypes(this ContainerBuilder builder)
+        public static void RegisterRestProvider(this ContainerBuilder builder)
         {
             var provider = AppDomain.CurrentDomain.GetAssemblies().Where(ass => ass.FullName.StartsWith("DD4T.Providers.Rest")).FirstOrDefault();
             if (provider == null)
