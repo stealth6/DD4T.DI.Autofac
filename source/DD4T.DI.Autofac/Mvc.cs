@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DD4T.DI.Autofac
 {
-    public static class MVCTypes
+    public static class Mvc
     {
-        public static void RegisterMVCTypes(this ContainerBuilder builder)
+        public static void RegisterMvc(this ContainerBuilder builder)
         {
             var location = string.Format(@"{0}\bin\", AppDomain.CurrentDomain.BaseDirectory);
             var file = Directory.GetFiles(location, "DD4T.MVC.dll").FirstOrDefault();
