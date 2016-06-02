@@ -91,7 +91,7 @@ namespace DD4T.DI.Autofac
 
 
             builder.RegisterType<DD4TConfiguration>().As<IDD4TConfiguration>().SingleInstance().PreserveExistingDefaults();
-            builder.RegisterType<DefaultLogger>().As<ILogger>().SingleInstance().PreserveExistingDefaults();
+            
             builder.RegisterType<DefaultCacheAgent>().As<ICacheAgent>().PreserveExistingDefaults();
 
             //caching JMS
