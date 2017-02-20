@@ -1,11 +1,8 @@
-﻿using Autofac;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Autofac;
 
 namespace DD4T.DI.Autofac
 {
@@ -18,31 +15,30 @@ namespace DD4T.DI.Autofac
             if (file == null)
                 return;
 
-            var load = Assembly.LoadFile(file);
-            var provider = AppDomain.CurrentDomain.GetAssemblies().Where(ass => ass.FullName.StartsWith("DD4T.MVC")).FirstOrDefault();
+            Assembly.LoadFile(file);
+            var provider = AppDomain.CurrentDomain.GetAssemblies().Where(ass => ass.FullName.StartsWith("DD4T.MVC", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
             if (provider == null)
                 return;
 
             var providerTypes = provider.GetTypes();
 
-            var iComponentPresentationRenderer = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.Html.IComponentPresentationRenderer")).FirstOrDefault();
-            var defaultComponentPresentationRenderer = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.Html.DefaultComponentPresentationRenderer")).FirstOrDefault();
+            var iComponentPresentationRenderer = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.Html.IComponentPresentationRenderer", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var defaultComponentPresentationRenderer = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.Html.DefaultComponentPresentationRenderer", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
-            var iXpmMarkupService = providerTypes.Where(a => a.FullName.Equals("DD4T.MVC.ViewModels.XPM.IXpmMarkupService")).FirstOrDefault();
-            var defaultXpmMarkupService = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.ViewModels.XPM.XpmMarkupService")).FirstOrDefault();
+            var iXpmMarkupService = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.ViewModels.XPM.IXpmMarkupService", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var defaultXpmMarkupService = providerTypes.Where(a => a.FullName.Equals("DD4T.Mvc.ViewModels.XPM.XpmMarkupService", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
             //register default ComponentPresentationRenderer
             if (iComponentPresentationRenderer != null || defaultComponentPresentationRenderer != null)
             {
-                builder.RegisterType(defaultComponentPresentationRenderer).As(new[] { iComponentPresentationRenderer }).PreserveExistingDefaults();
+                builder.RegisterType(defaultComponentPresentationRenderer).As(iComponentPresentationRenderer).PreserveExistingDefaults();
             }
+
             //register default XPmMarkupService
             if (iXpmMarkupService != null || defaultXpmMarkupService != null)
             {
-                builder.RegisterType(defaultXpmMarkupService).As(new[] { iXpmMarkupService }).PreserveExistingDefaults();
+                builder.RegisterType(defaultXpmMarkupService).As(iXpmMarkupService).PreserveExistingDefaults();
             }
-
-
         }
     }
 }
