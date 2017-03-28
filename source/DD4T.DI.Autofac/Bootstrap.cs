@@ -28,7 +28,7 @@ namespace DD4T.DI.Autofac
         {
             var binDirectory = string.Format(@"{0}\bin\", AppDomain.CurrentDomain.BaseDirectory);
 
-            //allowing to register types from any other DD4T.* package into the container: 
+            //allowing to register types from any other DD4T.* package into the container:
             //functionality introduced to allow a more plugabble architecture into the framework.
             var loadedAssemblies = Directory.GetFiles(binDirectory, "DD4T.*").Select(s => Assembly.LoadFile(s));
 
@@ -70,7 +70,6 @@ namespace DD4T.DI.Autofac
                 }
             }
 
-
             //not all dll's are loaded in the app domain. we will load the assembly in the appdomain to be able map the mapping
             //var binDirectory = string.Format(@"{0}\bin\", AppDomain.CurrentDomain.BaseDirectory);
             if (!Directory.Exists(binDirectory))
@@ -85,13 +84,12 @@ namespace DD4T.DI.Autofac
             builder.RegisterProviders();
             builder.RegisterFactories();
             builder.RegisterRestProvider();
-            builder.RegisterMvc();
+            //builder.RegisterMvc();
             builder.RegisterResolvers();
             builder.RegisterViewModels();
 
-
             builder.RegisterType<DD4TConfiguration>().As<IDD4TConfiguration>().SingleInstance().PreserveExistingDefaults();
-            
+
             builder.RegisterType<DefaultCacheAgent>().As<ICacheAgent>().PreserveExistingDefaults();
 
             //caching JMS
