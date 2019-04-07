@@ -10,7 +10,7 @@ namespace DD4T.DI.Autofac
     {
         public static void RegisterMvc(this ContainerBuilder builder)
         {
-            var location = string.Format(@"{0}\bin\", AppDomain.CurrentDomain.BaseDirectory);
+            var location = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin");
             var file = Directory.GetFiles(location, "DD4T.MVC.dll").FirstOrDefault();
             if (file == null)
                 return;
