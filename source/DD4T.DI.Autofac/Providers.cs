@@ -18,7 +18,9 @@ namespace DD4T.DI.Autofac
             var cpProvider = providerTypes.Where(a => typeof(IComponentPresentationProvider).IsAssignableFrom(a)).FirstOrDefault();
             var linkProvider = providerTypes.Where(a => typeof(ILinkProvider).IsAssignableFrom(a)).FirstOrDefault();
             var binaryProvider = providerTypes.Where(a => typeof(IBinaryProvider).IsAssignableFrom(a)).FirstOrDefault();
+#pragma warning disable CS0618 // Type or member is obsolete
             var componentProvider = providerTypes.Where(a => typeof(IComponentProvider).IsAssignableFrom(a)).FirstOrDefault();
+#pragma warning restore CS0618 // Type or member is obsolete
             var commonServices = providerTypes.Where(a => typeof(IProvidersCommonServices).IsAssignableFrom(a)).FirstOrDefault();
 
 
@@ -33,7 +35,9 @@ namespace DD4T.DI.Autofac
             if (linkProvider != null)
                 builder.RegisterType(linkProvider).As<ILinkProvider>().PreserveExistingDefaults();
             if (componentProvider != null)
+#pragma warning disable CS0618 // Type or member is obsolete
                 builder.RegisterType(componentProvider).As<IComponentProvider>().PreserveExistingDefaults();
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }
