@@ -5,8 +5,12 @@
 
 # dd4t-di-autofac
 
-Autofac Dependency injection container
+Autofac dependency injection container
 
+## Release 2.5
+
+- Upgraded reference to DD4T.Core
+- Suppress warnings about obsolete methods in IComponentProvider
 
 
 ## How to 
