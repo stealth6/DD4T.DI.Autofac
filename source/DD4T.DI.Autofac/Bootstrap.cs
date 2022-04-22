@@ -26,7 +26,7 @@ namespace DD4T.DI.Autofac
     {
         public static void UseDD4T(this ContainerBuilder builder)
         {
-            var binDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin");
+            var binDirectory = Path.Combine(this.GetType().Assembly.Location, "bin");
 
             //allowing to register types from any other DD4T.* package into the container:
             //functionality introduced to allow a more plugabble architecture into the framework.
