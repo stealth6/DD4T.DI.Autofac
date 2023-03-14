@@ -11,7 +11,7 @@
     </releaseNotes>
     <tags>SDLTridion Tridion DD4T SDL Web SDLWeb SDLWEB SDLWeb8 Autofac DD4T.DI.Autofac</tags>
     <dependencies>
-      <dependency id="Autofac.MVC5" version="4.0.1" />
+      <dependency id="Autofac" version="4.0.1" />
       <dependency id="DD4T.Core" version="2.5" />
     </dependencies>
   </metadata>
